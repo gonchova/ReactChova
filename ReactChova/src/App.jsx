@@ -8,8 +8,11 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Productos from './pages/Productos';
 import Carrito from './pages/Carrito';
+import Perfil from './pages/Perfil';
+import Login from './pages/Login';
 import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
-
+import Administracion from './pages/Administracion';
+import RutaProtegida from './components/RutaProtegida';
 
 function App() {
   
@@ -35,6 +38,14 @@ function App() {
                 <Route path='/ofertas' element={<Ofertas agregarItem = {setcantItems} arrayItems = {setarrayItems} precioOferta = {250}/>}  />
                 <Route path='/about' element={<About/>}  />
                 <Route path='/contact' element={<Contact/>}  />
+                <Route path="/login" element={<Login />} />
+
+                <Route path="/admin" element={
+                  <RutaProtegida><Administracion /></RutaProtegida>
+                } />
+                <Route path="/perfil/:id" element={
+                  <RutaProtegida><Perfil /></RutaProtegida>
+                } />
                 <Route path='/carrito' element={
                       <Carrito items = {arrayItems} />
                   }/>

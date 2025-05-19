@@ -21,7 +21,7 @@ const Productos=({cantItems, agregarItem, arrayItems})=>
         const [productos, setProductos] = useState([]);
         const [Loading, setLoading] = useState(true);
 
-        const agregarCarrito=(data)=>{
+        const agregarCarrito = (data)=>{
 
           var items = localStorage.getItem('data');
 
@@ -44,7 +44,6 @@ const Productos=({cantItems, agregarItem, arrayItems})=>
 
         }
   
-
         return(
             <Container className="mt-4 mb-4">
             <h1><u>Teléfonos disponibles:</u></h1>
@@ -58,7 +57,7 @@ const Productos=({cantItems, agregarItem, arrayItems})=>
                       <Card.Body >
                         <Card.Title>{data.title}</Card.Title>
                           <Card.Text className="row h-20 text-wrap">
-                              Descripcion: {data.description || 'N/A'}
+                            Descripcion: {data.description || 'N/A'}
                           </Card.Text>
                       </Card.Body>
                       <Card.Footer className="col mx-4 justify-content-center">
