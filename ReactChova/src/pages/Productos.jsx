@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Container,Row, Col, Card, Button , Spinner} from "react-bootstrap";
+import { CartContext } from "../components/CartContext";
 
-const Productos=({cantItems, agregarItem, arrayItems})=>
+const Productos=()=>
     {
         useEffect(()=>
         {
@@ -21,27 +22,27 @@ const Productos=({cantItems, agregarItem, arrayItems})=>
         const [productos, setProductos] = useState([]);
         const [Loading, setLoading] = useState(true);
 
+        const {cart, setCart, addtoCart, cantItems, setCantItems} = useContext(CartContext); 
+
         const agregarCarrito = (data)=>{
-
-          var items = localStorage.getItem('data');
-
-          var arrayjsons = [];
           
-          if ( items != null )
-             arrayjsons =  JSON.parse(items);
+          console.log(data);
+          // var items = localStorage.getItem('data');
 
-          arrayjsons.push(JSON.stringify(data));
+          // var arrayjsons = [];
           
-          localStorage.removeItem('data');
+          // if ( items != null )
+          //    arrayjsons =  JSON.parse(items);
 
-          cantItems = arrayjsons.length;
+          // arrayjsons.push(JSON.stringify(data));
+          
+          // localStorage.removeItem('data');
 
-          agregarItem(cantItems);
+          console.log(cart.length);
 
-          localStorage.setItem('data', JSON.stringify(arrayjsons));
+          addtoCart(data);
 
-          arrayItems(JSON.parse(JSON.stringify(arrayjsons)));
-
+          setCantItems(cantItems+1)
         }
   
         return(

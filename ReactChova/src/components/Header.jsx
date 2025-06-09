@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Navbar, Nav, Container, Badge, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Carrito from "../assets/Carrito.svg";
 import Logo from "../assets/Logo.png";
+import { CartContext } from "./CartContext";
 
-const NavBarPrincipal = ({items}) =>{
+const NavBarPrincipal = () =>{
 
     const navigate = useNavigate();
 
@@ -15,6 +16,8 @@ const NavBarPrincipal = ({items}) =>{
       localStorage.removeItem('auth');
       navigate('/login');
     };
+    
+    const {cantItems} = useContext(CartContext); 
 
     return(
         <Navbar className="bg-secondary">
@@ -31,7 +34,7 @@ const NavBarPrincipal = ({items}) =>{
                 <Nav className="ms-auto">
                     <Nav.Link className="text-white" as={Link} to="/carrito">
                     <img src={Carrito} alt="Carrito"  style={{ width: '24px', height: '24px' }} />
-                    <Badge bg="secondary">{items}</Badge>
+                    <Badge bg="secondary">{cantItems}</Badge>
                     </Nav.Link>
                 </Nav>
                 
