@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState, useEffect,useContext } from 'react'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -10,30 +9,21 @@ import Productos from './pages/Productos';
 import Carrito from './pages/Carrito';
 import Perfil from './pages/Perfil';
 import Login from './pages/Login';
+import NuevoProducto from './pages/NuevoProducto'
 import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
 import Administracion from './pages/Administracion';
 import RutaProtegida from './components/RutaProtegida';
-import { CartProvider,CartContext } from './components/CartContext';
+import { CartProvider } from './components/CartContext';
+import { ProductsProvider } from './components/ProductsContext';
 
 
 function App() {
   
-    
-
-  //const [cantItems, setcantItems] = useState(0);
-  //const [arrayItems, setarrayItems] = useState([]);
-  
-  //Manejo la recarga del browser para limpiar el localstorage, de modo de poder reiniciar la carga de carrito - (Solo para pruebas)
-  // useEffect( () => {
-  //   window.addEventListener('beforeunload', localStorage.clear());
-  //   return () => {
-  //     window.removeEventListener('beforeunload', localStorage.clear());
-  //   };
-  // }, []);
-
    return (
     <div className="mb-5">
-        <CartProvider>
+      <ProductsProvider>
+       <CartProvider>
+        
         <Router>
           <Header />
           <Routes>
@@ -45,10 +35,21 @@ function App() {
                 <Route path="/login" element={<Login />} />
 
                 <Route path="/admin" element={
-                  <RutaProtegida><Administracion /></RutaProtegida>
+                  <RutaProtegida> <Administracion /> </RutaProtegida>
                 } />
+
+                {/* <Route path="/editproducto" element={
+                  <RutaProtegida> <EditarProducto /> </RutaProtegida>
+                } /> */}
+
+
+                <Route path="/createproducto" element={
+                  <RutaProtegida> <NuevoProducto /> </RutaProtegida>
+                } />
+
+
                 <Route path="/perfil/:id" element={
-                  <RutaProtegida><Perfil /></RutaProtegida>
+                  <RutaProtegida> <Perfil /> </RutaProtegida>
                 } />
                 <Route path='/carrito' element={
                       <Carrito/>
@@ -56,6 +57,7 @@ function App() {
           </Routes>
         </Router>
         </CartProvider>
+        </ProductsProvider>
         <Footer/>
     </div>
   )

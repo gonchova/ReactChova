@@ -1,49 +1,22 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Container,Row, Col, Card, Button , Spinner} from "react-bootstrap";
 import { CartContext } from "../components/CartContext";
+import { ProductContext } from "../components/ProductsContext";
 
 const Productos=()=>
     {
-        useEffect(()=>
-        {
-            // hacer el pedido de la api
-            fetch('https://dummyjson.com/products/category/smartphones')
-                .then(res=>res.json())
-                .then(data=>{
-                    setProductos(data.products);
-                    setLoading(false);
-            })
-            .catch(err=>{
-                console.error("Error de carga de API",err);
-                setLoading(false);
-            });
-        },[]);
-
-        const [productos, setProductos] = useState([]);
-        const [Loading, setLoading] = useState(true);
-
-        const {cart, setCart, addtoCart, cantItems, setCantItems} = useContext(CartContext); 
+        
+        const {addtoCart, cantItems, setCantItems} = useContext(CartContext); 
+        const {productos, Loading} = useContext(ProductContext); 
 
         const agregarCarrito = (data)=>{
           
-          console.log(data);
-          // var items = localStorage.getItem('data');
-
-          // var arrayjsons = [];
-          
-          // if ( items != null )
-          //    arrayjsons =  JSON.parse(items);
-
-          // arrayjsons.push(JSON.stringify(data));
-          
-          // localStorage.removeItem('data');
-
-          console.log(cart.length);
-
           addtoCart(data);
 
           setCantItems(cantItems+1)
         }
+
+        
   
         return(
             <Container className="mt-4 mb-4">

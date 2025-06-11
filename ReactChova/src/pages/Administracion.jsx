@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Container,Form, Button, Table } from 'react-bootstrap';
-import Logo from "../assets/Logo.png"
+import Logo from "../assets/Logo.png";
+import { useNavigate } from "react-router-dom";
+import { ProductContext } from "../components/ProductsContext";
 
 export default function Administracion() {
 
@@ -10,7 +12,8 @@ export default function Administracion() {
               fetch('https://dummyjson.com/products/category/smartphones')
                   .then(res=>res.json())
                   .then(data=>{
-                      setProductos(data.products);
+                    if (productos.length == 0)
+                        setProductos(data.products);
 
               })
               .catch(err=>{
@@ -19,8 +22,9 @@ export default function Administracion() {
               });
           },[]);
   
-          const [productos, setProductos] = useState([]);
-
+        const {productos, setProductos, eliminarProducto} = useContext(ProductContext);
+        const navigate = useNavigate();
+        
   return (
 
     <Container className="mt-4">
@@ -48,7 +52,7 @@ export default function Administracion() {
                                 <td>{item.id}</td>
                                 <td>{item.title}</td>
                                 <td>${item.price}</td>
-                                <td><Button variant="danger mx-1">Eliminar</Button>
+                                <td><Button variant="danger mx-1" onClick={()=>eliminarProducto(item)}>Eliminar</Button>
                                 <Button variant="danger mx-1 bg-warning">Editar</Button></td>
                             </tr>
                         ) })
@@ -58,7 +62,7 @@ export default function Administracion() {
             </tbody>
             </Table>
 
-            <Button variant="danger mx-1 bg-primary">Nuevo Producto</Button>
+            <Button variant="danger mx-1 bg-primary" onClick={()=>{navigate('/createproducto')}}>Nuevo Producto</Button>
 
             <div className="row my-4 justify-content-center">
                 <img className="mt-5 rounded-circle " src={Logo} alt="Logo" style={{ width: '100px', height: '80px' }} />

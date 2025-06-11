@@ -16,12 +16,9 @@ export const CartProvider = ({children}) => {
                 const bExiste = cart.find( item => item.id === articulo.id);
                 
                 if (bExiste)
-                {
                     return cart.map (item => item.id === articulo.id ? {...item, cantidad: item.cantidad+1 } : item);
-                }
 
                 return [...cart, {...articulo, cantidad: 1}];
-
                 
             }
             );
