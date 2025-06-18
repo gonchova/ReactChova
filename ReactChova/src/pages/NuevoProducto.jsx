@@ -3,7 +3,6 @@ import { ProductContext } from "../components/ProductsContext";
 import { Container, Form, Button } from "react-bootstrap";
 import Logo from "../assets/Logo.png";
 import Swal from 'sweetalert2';
-import { useNavigate } from "react-router-dom";
 
 export default function NuevoProducto()
     {  
@@ -30,7 +29,7 @@ export default function NuevoProducto()
       },[]);
 
     const [productoImagen, setProductoImagen] = useState([]);
-    const navigate = useNavigate();
+   
 
     const nuevoProducto = (e) =>
     {

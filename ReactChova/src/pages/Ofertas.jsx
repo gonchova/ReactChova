@@ -1,49 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Container,Row, Col, Card, Button, Spinner } from "react-bootstrap";
+import { CartContext } from "../components/CartContext";
+import { ProductContext } from "../components/ProductsContext";
 
-const Ofertas=({cantItems, agregarItem, arrayItems, precioOferta})=>
+const Ofertas=()=>
     {
-        useEffect(()=>
-            {
-                // hacer el pedido de la api
-                fetch('https://dummyjson.com/products/category/smartphones')
-                    .then(res=>res.json())
-                    .then(data=>{
-                        const datos = data.products.filter(reg => reg.price < precioOferta);
-                        setProductos(datos);
-                        setLoading(false);
-                })
-                .catch(err=>{
-                    console.error("Error de carga de API",err);
-                    setLoading(false);
-                });
-            },[precioOferta]);
-            
-            const [productos, setProductos] = useState([]);
+      const {addtoCart, cantItems, setCantItems} = useContext(CartContext); 
+      const {productos, Loading} = useContext(ProductContext); 
 
-            const agregarCarrito=(data)=>{
-                
-              var items = localStorage.getItem('data');
-              var arrayjsons = [];
-              
-              if ( items != null )
-                 arrayjsons =  JSON.parse(items);
-    
-              arrayjsons.push(JSON.stringify(data));
-              
-              localStorage.removeItem('data');
-    
-              cantItems = arrayjsons.length;
-    
-              agregarItem(cantItems);
-    
-              localStorage.setItem('data', JSON.stringify(arrayjsons));
-                
-              arrayItems(JSON.parse(JSON.stringify(arrayjsons)));
-    
-            }
-      
-            const [Loading, setLoading] = useState(true);
+      const productosOferta = productos.filter(pr => pr.price > 350);
+
+      const agregarCarrito = (data)=>{
+        
+        addtoCart(data);
+
+        setCantItems(cantItems+1)
+      }
 
             return(
                 <Container className='mt-4' >
@@ -51,7 +23,7 @@ const Ofertas=({cantItems, agregarItem, arrayItems, precioOferta})=>
                 <Row className="justify-content md-center">
                   { !Loading ? (
                   
-                   (productos) && (productos.map(data=>(
+                   (productosOferta) && (productosOferta.map(data=>(
                     <Col key={data.id} md={3}  className="p-2">
               
                       <Card className="m-2 h-100">

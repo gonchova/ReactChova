@@ -6,42 +6,13 @@ import Swal from 'sweetalert2';
 import { CartContext } from "../components/CartContext";
 
 
-
 const Carrito=()=>
     {  
 
     const {cart, setCart, clearCart, deleteFromCart} = useContext(CartContext); 
 
     const navigate = useNavigate();
-
-    // const isAuth = localStorage.getItem('auth') === 'true';
-
-    
-    // if(isAuth)  
-    // {  
-    //     Swal.fire({
-    //         icon: 'success',
-    //         title: 'Compra procesada.',
-    //         text: `Gracias por su Compra!.`,
-    //     });
-
-    //     navigate('/productos');
-    //     return;
-    // }
-    // else
-    // {
-        
-    //     Swal.fire({
-    //         icon: 'error',
-    //         title: 'Aviso',
-    //         text: 'Debe estar logueado para procesar su pedido.',
-    //     });
-
-    //     navigate('/login');
-    //     return;
-    
-    // }
-  
+      
     const confirmarPedido = (e) => 
     {
 
@@ -85,7 +56,6 @@ const Carrito=()=>
     {   
         clearCart();
 
-      //  agregarItem('');
     }
 
     return(
@@ -133,9 +103,6 @@ const Carrito=()=>
                 <div className="row my-4 justify-content-center">
                     <img className="mt-5 rounded-circle " src={Logo} alt="Logo" style={{ width: '100px', height: '80px' }} />
                 </div>
-
-
-
 
         </Container>
     );

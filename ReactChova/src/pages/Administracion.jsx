@@ -6,24 +6,36 @@ import { ProductContext } from "../components/ProductsContext";
 
 export default function Administracion() {
 
-   useEffect(()=>
-          {
-              // hacer el pedido de la api
-              fetch('https://dummyjson.com/products/category/smartphones')
-                  .then(res=>res.json())
-                  .then(data=>{
-                    if (productos.length == 0)
-                        setProductos(data.products);
+    const {productos, setProductos, eliminarProducto} = useContext(ProductContext);
+    const navigate = useNavigate();
+        
+    useEffect(()=>
+    {
+        const handleBeforeUnload = (event) => {
+            event.preventDefault();
+            event.returnValue = ''; 
+          };
+        
+        window.addEventListener('beforeunload', handleBeforeUnload);
 
-              })
-              .catch(err=>{
-                  console.error("Error de carga de API",err);
+        // hacer el pedido de la api
+        fetch('https://dummyjson.com/products/category/smartphones')
+            .then(res=>res.json())
+            .then(data=>{
+            if (productos.length == 0)
+                setProductos(data.products);
 
-              });
-          },[]);
-  
-        const {productos, setProductos, eliminarProducto} = useContext(ProductContext);
-        const navigate = useNavigate();
+        })
+        .catch(err=>{
+            console.error("Error de carga de API",err);
+        });
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+          };
+
+    },[]);
+    
         
   return (
 
@@ -53,7 +65,8 @@ export default function Administracion() {
                                 <td>{item.title}</td>
                                 <td>${item.price}</td>
                                 <td><Button variant="danger mx-1" onClick={()=>eliminarProducto(item)}>Eliminar</Button>
-                                <Button variant="danger mx-1 bg-warning">Editar</Button></td>
+                                    <Button variant="danger mx-1 bg-warning"  onClick={()=>{navigate('/editproducto/'+item.id)}}>Editar</Button>
+                                </td>
                             </tr>
                         ) })
                 )    
@@ -62,7 +75,7 @@ export default function Administracion() {
             </tbody>
             </Table>
 
-            <Button variant="danger mx-1 bg-primary" onClick={()=>{navigate('/createproducto')}}>Nuevo Producto</Button>
+            <Button variant="danger mx-1 bg-primary" onClick={()=>{navigate('/createproducto/id')}}>Nuevo Producto</Button>
 
             <div className="row my-4 justify-content-center">
                 <img className="mt-5 rounded-circle " src={Logo} alt="Logo" style={{ width: '100px', height: '80px' }} />

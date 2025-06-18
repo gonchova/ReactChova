@@ -16,8 +16,6 @@ const Productos=()=>
           setCantItems(cantItems+1)
         }
 
-        
-  
         return(
             <Container className="mt-4 mb-4">
             <h1><u>Teléfonos disponibles:</u></h1>

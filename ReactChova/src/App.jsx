@@ -15,10 +15,12 @@ import Administracion from './pages/Administracion';
 import RutaProtegida from './components/RutaProtegida';
 import { CartProvider } from './components/CartContext';
 import { ProductsProvider } from './components/ProductsContext';
+import EditarProducto from './pages/EditarProducto';
 
 
 function App() {
   
+ 
    return (
     <div className="mb-5">
       <ProductsProvider>
@@ -38,15 +40,14 @@ function App() {
                   <RutaProtegida> <Administracion /> </RutaProtegida>
                 } />
 
-                {/* <Route path="/editproducto" element={
-                  <RutaProtegida> <EditarProducto /> </RutaProtegida>
-                } /> */}
-
-
                 <Route path="/createproducto" element={
                   <RutaProtegida> <NuevoProducto /> </RutaProtegida>
                 } />
 
+
+                <Route path="/editproducto/:idProducto" element={
+                  <RutaProtegida> <EditarProducto /> </RutaProtegida>
+                } />
 
                 <Route path="/perfil/:id" element={
                   <RutaProtegida> <Perfil /> </RutaProtegida>
