@@ -22,7 +22,7 @@ function App() {
   
  
    return (
-    <div className="mb-5">
+    <div className="mb-5 ">
       <ProductsProvider>
        <CartProvider>
         
