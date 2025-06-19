@@ -45,7 +45,7 @@ export default function Login()
             <Form.Control type="password" />
             </Form.Group>
             <div className="row justify-content-center mx-auto px-5 ">
-                <Button variant="info" onClick={handleLogin}>Ingresar</Button>
+                <Button type="submit" variant="info" onClick={handleLogin}>Ingresar</Button>
             </div>
         </Form>
     </Container>

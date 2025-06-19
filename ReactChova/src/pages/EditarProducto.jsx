@@ -108,7 +108,7 @@ export default function EditarProducto()
                 </Form.Group>
 
                 <Row className="justify-content-center mx-5 ">
-                    <Button variant="info" className="mx-6 w-50"onClick={(e)=>EditarProducto(e)}>Guardar</Button>
+                    <Button  type="submit" variant="info" className="mx-6 w-50"  onClick={(e)=>EditarProducto(e)}>Guardar</Button>
                     <Button variant="danger mx-1 bg-danger" className="mx-4 my-2 w-50" onClick={()=>{navigate('/admin')}}>Cancelar</Button>
                 </Row>
             </Form>
