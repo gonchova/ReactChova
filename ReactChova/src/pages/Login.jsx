@@ -26,6 +26,7 @@ export default function Login()
     localStorage.setItem('usuario', usuario);
 
     navigate('/productos');
+    
   };
 
   return (
