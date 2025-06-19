@@ -5,7 +5,8 @@ import Carrito from "../assets/Carrito.svg";
 import Logo from "../assets/Logo.png";
 import { CartContext } from "./CartContext";
 
-const NavBarPrincipal = () =>{
+const NavBarPrincipal = () =>
+{
 
     const navigate = useNavigate();
 

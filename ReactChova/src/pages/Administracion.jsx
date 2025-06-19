@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Container,Form, Button, Table } from 'react-bootstrap';
+import { Container, Button, Table, Row } from 'react-bootstrap';
 import Logo from "../assets/Logo.png";
 import { useNavigate } from "react-router-dom";
 import { ProductContext } from "../components/ProductsContext";
@@ -40,7 +40,10 @@ export default function Administracion() {
   return (
 
     <Container className="mt-4">
-        <h1><u>Productos Existentes</u></h1>
+        <Row className="justify-content-end">
+        <div className="col"> <h1 className="justify-content-center my-2"><u>Productos Existentes</u></h1> </div>
+            <Button variant="danger my-2 mx-1 bg-primary w-25 mx-4 " onClick={()=>{navigate('/createproducto')}}>Nuevo Producto</Button>
+        </Row>
         <Table striped bordered hover variant="dark">
             <thead>
                 <tr>
@@ -74,8 +77,6 @@ export default function Administracion() {
 
             </tbody>
             </Table>
-
-            <Button variant="danger mx-1 bg-primary" onClick={()=>{navigate('/createproducto/id')}}>Nuevo Producto</Button>
 
             <div className="row my-4 justify-content-center">
                 <img className="mt-5 rounded-circle " src={Logo} alt="Logo" style={{ width: '100px', height: '80px' }} />

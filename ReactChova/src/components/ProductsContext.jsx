@@ -3,7 +3,8 @@ import Swal from 'sweetalert2';
 
 export const ProductContext = createContext();
 
-export const ProductsProvider = ({children}) => {
+export const ProductsProvider = ({children}) => 
+{
 
     let [productos, setProductos] = useState([]);
     
@@ -88,11 +89,8 @@ export const ProductsProvider = ({children}) => {
 
             }
           });
-      
-
         
     }
-    
    
     return(
         <ProductContext.Provider value={{
@@ -108,4 +106,4 @@ export const ProductsProvider = ({children}) => {
         </ProductContext.Provider>
     );
 
-    }
+}

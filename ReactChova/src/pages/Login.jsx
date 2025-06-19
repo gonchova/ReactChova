@@ -4,7 +4,8 @@ import Logo from "../assets/Logo.png"
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 
-export default function Login() {
+export default function Login() 
+{
   const navigate = useNavigate();
   
   const [usuario, setUsuario] = useState('');

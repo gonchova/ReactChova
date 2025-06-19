@@ -2,41 +2,24 @@ import React, {useState, useEffect, useContext} from "react";
 import { ProductContext } from "../components/ProductsContext";
 import { Container, Form, Button } from "react-bootstrap";
 import Logo from "../assets/Logo.png";
+import SinImagen from "../assets/sinImagen.png";
 import Swal from 'sweetalert2';
 
 export default function NuevoProducto()
     {  
 
-    const {productos, agregarProducto} = useContext(ProductContext); 
+    const {agregarProducto} = useContext(ProductContext); 
     const [nombre, setNombre] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [precio, setPrecio] = useState('');
+    const [urlImagen, setUrlImagen] = useState('');
     
-    
-     useEffect(()=>
-      {
-          // hacer el pedido de la api
-          fetch('https://dummyjson.com/products/category/smartphones')
-              .then(res=>res.json())
-              .then(data=>{
-                setProductoImagen(data.products);
-
-          })
-          .catch(err=>{
-              console.error("Error de carga de API",err);
-
-          });
-      },[]);
-
-    const [productoImagen, setProductoImagen] = useState([]);
-   
-
     const nuevoProducto = (e) =>
     {
         //validaciones
         e.preventDefault(); 
 
-        if (!nombre || !descripcion || !productoImagen) 
+        if (!nombre || !descripcion ) 
         {
             Swal.fire({
                 icon: 'error',
@@ -56,18 +39,13 @@ export default function NuevoProducto()
         return;
         }
 
-
-        //obtengo imagen random
-        const min = Math.ceil(1);
-        const max = Math.floor(15);
-        const id = Math.floor(Math.random() * (15 - min + 1)) + min;
-
         const newProducto = 
         {   
             title: nombre,
-            thumbnail: productoImagen[id].thumbnail,
+            thumbnail: (!urlImagen)?SinImagen:urlImagen ,
             description: descripcion,
             price: parseFloat(precio)
+            
         }
 
         agregarProducto(newProducto);
@@ -83,7 +61,6 @@ export default function NuevoProducto()
         setPrecio('');
 
         return true;
-
 
     }
 
@@ -108,8 +85,13 @@ export default function NuevoProducto()
                 <Form.Label>Precio</Form.Label>
                 <Form.Control type="number"  onChange={e => setPrecio(e.target.value)} value={precio}/>
                 </Form.Group>
+                <Form.Group className="mb-3">
+                <Form.Label>URL Imagen</Form.Label>
+                <Form.Control type="text"  onChange={e => setUrlImagen(e.target.value)} value={urlImagen}/>
+                </Form.Group>
+
                 <div className="row justify-content-center mx-auto px-5 ">
-                    <Button variant="info" onClick={(e)=>nuevoProducto(e)}>Agregar</Button>
+                    <Button variant="info" onClick={(e)=>nuevoProducto(e)} default>Agregar</Button>
                 </div>
             </Form>
         </Container>

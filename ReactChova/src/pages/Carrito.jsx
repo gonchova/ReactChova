@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import { Container, Table, Row, Button } from "react-bootstrap";
+import { Container, Table, Button } from "react-bootstrap";
 import Logo from "../assets/Logo.png";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
@@ -7,7 +7,7 @@ import { CartContext } from "../components/CartContext";
 
 
 const Carrito=()=>
-    {  
+{  
 
     const {cart, setCart, clearCart, deleteFromCart} = useContext(CartContext); 
 

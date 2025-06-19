@@ -1,12 +1,12 @@
 import React, {useState, useEffect, useContext} from "react";
 import { ProductContext } from "../components/ProductsContext";
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Row } from "react-bootstrap";
 import Logo from "../assets/Logo.png";
 import Swal from 'sweetalert2';
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function EditarProducto()
-    {  
+{  
 
     const {productos, editarProducto} = useContext(ProductContext); 
     const {idProducto} = useParams();
@@ -91,7 +91,7 @@ export default function EditarProducto()
         <Container className="mt-5" style={{ maxWidth: 400 }}>
         <div className="row justify-content-center">
             <img className="mt-5 rounded-circle " src={Logo} alt="Logo" style={{ width: '80px', height: '50px' }} />
-            <h2 className="row justify-content-center mt-4 mb-4">Nuevo Producto</h2>
+            <h2 className="row justify-content-center mt-4 mb-4">Editar Producto</h2>
         </div>
             <Form >
                 <Form.Group className="mb-3">
@@ -106,12 +106,13 @@ export default function EditarProducto()
                 <Form.Label>Precio</Form.Label>
                 <Form.Control type="number"  onChange={e => setPrecio(e.target.value)} value={precio}/>
                 </Form.Group>
-                <div className="justify-center">
-                    <Button variant="info" onClick={(e)=>EditarProducto(e)}>Guardar</Button>
-                    <Button variant="danger mx-1 bg-danger" onClick={()=>{navigate('/admin')}}>Cancelar</Button>
-                </div>
+
+                <Row className="justify-content-center mx-5 ">
+                    <Button variant="info" className="mx-6 w-50"onClick={(e)=>EditarProducto(e)}>Guardar</Button>
+                    <Button variant="danger mx-1 bg-danger" className="mx-4 my-2 w-50" onClick={()=>{navigate('/admin')}}>Cancelar</Button>
+                </Row>
             </Form>
         </Container>
       );
 
-    }
+}
