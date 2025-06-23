@@ -11,7 +11,9 @@ export default function Login()
   const [usuario, setUsuario] = useState('');
 
   const handleLogin = (e) => {
-
+    
+    e.preventDefault();
+    
     if (!usuario)
     {
         Swal.fire({
@@ -21,6 +23,7 @@ export default function Login()
         });
         return;
     }
+
     localStorage.setItem('auth', 'true');
     
     localStorage.setItem('usuario', usuario);
