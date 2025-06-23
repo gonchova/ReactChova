@@ -19,19 +19,23 @@ const Productos=()=>
     return(
         <Container className="mt-4 mb-4">
         <h1><u>Teléfonos disponibles:</u></h1>
-        <Row className="justify-content md-center ">
+        <Row className="justify-content md-center">
           {!Loading ? ( 
             <>
             { (productos) && (productos.map(data=>(
             <Col key={data.id} md={3}  className="p-2">
               <Card className="m-2 h-100">
-                <Card.Img src={data.thumbnail} className="row mt-2 mx-auto"/>
-                  <Card.Body >
+                <Row className="md-center">
+                  <Card.Img src={data.thumbnail} className="row mt-2 mx-auto h-100"/>
+                </Row>
+                
+                  <Card.Body className="h-100">
                     <Card.Title>{data.title}</Card.Title>
                       <Card.Text className="row h-20 text-wrap mx-auto">
                         Descripcion: {data.description || 'N/A'}
                       </Card.Text>
                   </Card.Body>
+                  
                   <Card.Footer className="col mx-4 justify-content-center">
                       <div className="d-flex justify-content-center fw-bold">
                         Precio: ${ !(data.price == '0.00') ? data.price : 'Consulte' } 

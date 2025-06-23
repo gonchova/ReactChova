@@ -46,15 +46,36 @@ const Carrito=()=>
             text: `Gracias por su Compra!.`,
         });
 
-        vaciarCarrito();
+        vaciarCarrito(false);
         navigate('/productos');
         return;
 
     };
 
-    const vaciarCarrito= ()=>
-    {   
-        clearCart();
+    const vaciarCarrito= (confirmacion)=>
+    {  
+        if(confirmacion)
+        {
+        Swal.fire({
+            title: "Aviso!",
+            text: "¿Desea vaciar el carrito?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Vaciar"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                clearCart();
+            }
+          });
+        }
+        else
+        {
+            clearCart();
+        }
+        
 
     }
 
@@ -98,7 +119,7 @@ const Carrito=()=>
 
                 <Button className="mx-2 mt-4" variant="success" onClick={confirmarPedido}>Confirma pedido</Button>
 
-                <Button className="mx-2 mt-4" variant="secondary" onClick={vaciarCarrito}>Vaciar Carrito</Button>   
+                <Button className="mx-2 mt-4" variant="secondary" onClick={()=>vaciarCarrito(true)}>Vaciar Carrito</Button>   
 
                 <div className="row my-4 justify-content-center">
                     <img className="mt-5 rounded-circle " src={Logo} alt="Logo" style={{ width: '100px', height: '80px' }} />
