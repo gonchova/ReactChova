@@ -67,9 +67,9 @@ export default function NuevoProducto()
 
     return (
         
-        <Container className="mt-5" style={{ maxWidth: 400 }}>
+        <Container className="mt-2" style={{ maxWidth: 400 }}>
         <div className="row justify-content-center">
-            <img className="mt-5 rounded-circle " src={Logo} alt="Logo" style={{ width: '80px', height: '50px' }} />
+            <img className="mt-3 rounded-circle " src={Logo} alt="Logo" style={{ width: '80px', height: '50px' }} />
             <h2 className="row justify-content-center mt-4 mb-2">Nuevo Producto</h2>
         </div>
             <Form >

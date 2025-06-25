@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from "react";
 import { ProductContext } from "../components/ProductsContext";
-import { Container, Form, Button, Row } from "react-bootstrap";
+import { Container, Form, Button, Row, ButtonGroup } from "react-bootstrap";
 import Logo from "../assets/Logo.png";
 import Swal from 'sweetalert2';
 import { useNavigate, useParams } from "react-router-dom";
@@ -106,10 +106,11 @@ export default function EditarProducto()
                 <Form.Label>Precio</Form.Label>
                 <Form.Control type="number"  onChange={e => setPrecio(e.target.value)} value={precio}/>
                 </Form.Group>
-
-                <Row className="justify-content-center mx-5 ">
-                    <Button  type="submit" variant="info" className="mx-6 w-50"  onClick={(e)=>EditarProducto(e)}>Guardar</Button>
+                <Row>
+                <ButtonGroup className="justify-content-center ">
+                    <Button  type="submit" variant="info" className="mx-4 my-2 mx-6 w-50"  onClick={(e)=>EditarProducto(e)}>Guardar</Button>
                     <Button variant="danger mx-1 bg-danger" className="mx-4 my-2 w-50" onClick={()=>{navigate('/admin')}}>Cancelar</Button>
+                </ButtonGroup>
                 </Row>
             </Form>
         </Container>

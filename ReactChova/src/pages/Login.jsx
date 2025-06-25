@@ -33,11 +33,11 @@ export default function Login()
   };
 
   return (
-    <Container className="mt-5" style={{ maxWidth: 400 }}>
+    <Container className="mt-4 pb-1" style={{ maxWidth: 400}}>
     <div className="row justify-content-center">
-        <h1 className="row justify-content-center mt-4">CeluChova</h1>
-        <img className="mt-5 rounded-circle " src={Logo} alt="Logo" style={{ width: '200px', height: '180px' }} />
-        <h2 className="row justify-content-center mt-4 mb-2">Iniciar sesión</h2>
+        <h1 className="row justify-content-center">CeluChova</h1>
+        <img className="mt-4 rounded-circle " src={Logo} alt="Logo" style={{ width: '180px', height: '160px' }} />
+        <h2 className="row justify-content-center mt-2 mb-2">Iniciar sesión</h2>
     </div>
         <Form>
             <Form.Group className="mb-3">
@@ -53,5 +53,6 @@ export default function Login()
             </div>
         </Form>
     </Container>
+
   );
 }
